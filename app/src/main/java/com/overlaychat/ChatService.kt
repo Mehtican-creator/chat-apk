@@ -233,8 +233,8 @@ class ChatService : Service() {
         fun acceptCall() { inst?.doAccept() }
         fun declineCall() { inst?.doDecline() }
         fun hangUp() { inst?.doHangUp() }
-        fun setMuted(v: Boolean) { muted = v }
-        fun setSpeaker(v: Boolean) { inst?.applySpeaker(v) }
+        fun changeMute(v: Boolean) { muted = v }
+        fun changeSpeaker(v: Boolean) { inst?.applySpeaker(v) }
         fun inCall(): Boolean = callId.isNotEmpty()
     }
 

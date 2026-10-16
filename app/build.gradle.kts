@@ -19,6 +19,7 @@ android {
     if (ks.exists()) {
         signingConfigs.getByName("debug") {
             storeFile = ks
+            storeType = "pkcs12"
             storePassword = "android"
             keyAlias = "androiddebugkey"
             keyPassword = "android"

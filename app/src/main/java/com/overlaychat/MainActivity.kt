@@ -960,8 +960,8 @@ class MainActivity : Activity() {
             val mute = smallButton(if (ChatService.muted) "🔇 Sessiz" else "🎙 Açık", Color.parseColor("#2A2A36"))
             val spk = smallButton(if (ChatService.speaker) "🔊 Hoparlör" else "📱 Ahize", Color.parseColor("#2A2A36"))
             val end = smallButton("Bitir", ACCENT)
-            mute.setOnClickListener { ChatService.setMuted(!ChatService.muted); refreshCallUi() }
-            spk.setOnClickListener { ChatService.setSpeaker(!ChatService.speaker) }
+            mute.setOnClickListener { ChatService.changeMute(!ChatService.muted); refreshCallUi() }
+            spk.setOnClickListener { ChatService.changeSpeaker(!ChatService.speaker) }
             end.setOnClickListener { ChatService.hangUp() }
             row.addView(mute)
             row.addView(spk, LinearLayout.LayoutParams(
