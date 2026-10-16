@@ -23,7 +23,15 @@ jobs:
           gradle-version: "8.9"
 
       - name: Build debug APK
-        run: gradle assembleDebug --no-daemon
+        run: |
+          set +e
+          gradle assembleDebug --no-daemon --console=plain > build.log 2>&1
+          code=$?
+          if [ $code -ne 0 ]; then
+            msg=$(grep -E -A2 "^e: |What went wrong|AAPT|error:|Manifest merger" build.log | head -45 | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')
+            echo "::error title=Derleme hatasi::$msg"
+          fi
+          exit $code
 
       - uses: actions/upload-artifact@v4
         with:
